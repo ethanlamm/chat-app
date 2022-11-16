@@ -79,43 +79,69 @@ const DashboardLayout = () => {
 
   return (
     <>
-      <Box sx={{
-        background: theme.palette.background.paper,
-        boxShadow: '0px 0px 2px rgba(0,0,0,0.25)',
-        height: '100vh',
-        width: 100,
-        padding: 2
-      }}
-      >
-        <Stack
-          direction={'column'}
-          justifyContent={'space-between'}
-          alignItems={'center'}
-          sx={{ width: '100%', height: '100%' }}
+      <Stack direction={'row'}>
+        <Box sx={{
+          background: theme.palette.background.paper,
+          boxShadow: '0px 0px 2px rgba(0,0,0,0.25)',
+          height: '100vh',
+          width: 100,
+          padding: 2
+        }}
         >
           <Stack
             direction={'column'}
+            justifyContent={'space-between'}
             alignItems={'center'}
-            spacing={3}>
-            <Box sx={{
-              background: theme.palette.primary.main,
-              height: 64,
-              width: 64,
-              borderRadius: 1.5
-            }}>
-              <img src={Logo} alt="Chat App Logo" />
-            </Box>
+            sx={{ width: '100%', height: '100%' }}
+          >
             <Stack
               direction={'column'}
               alignItems={'center'}
-              spacing={3}
-              sx={{ width: 'max-content' }}
-            >
-              {
-                Nav_Buttons.map(el =>
-                  el.index === selected ?
+              spacing={3}>
+              <Box sx={{
+                background: theme.palette.primary.main,
+                height: 64,
+                width: 64,
+                borderRadius: 1.5
+              }}>
+                <img src={Logo} alt="Chat App Logo" />
+              </Box>
+              <Stack
+                direction={'column'}
+                alignItems={'center'}
+                spacing={3}
+                sx={{ width: 'max-content' }}
+              >
+                {
+                  Nav_Buttons.map(el =>
+                    el.index === selected ?
+                      <Box
+                        key={el.index}
+                        sx={{
+                          backgroundColor: theme.palette.primary.main,
+                          borderRadius: 1.5,
+                          padding: 1
+                        }}
+                      >
+                        <IconButton sx={{ width: 'max-content', color: '#fff' }}>
+                          {el.icon}
+                        </IconButton>
+                      </Box>
+                      :
+                      <IconButton key={el.index}
+                        sx={{
+                          width: 'max-content',
+                          color: theme.palette.mode === 'light' ? '#000' : theme.palette.text.primary
+                        }}
+                        onClick={() => setSelected(el.index)}>
+                        {el.icon}
+                      </IconButton>
+                  )
+                }
+                <Divider sx={{ width: '48px' }} />
+                {
+                  selected === 3 ?
                     <Box
-                      key={el.index}
                       sx={{
                         backgroundColor: theme.palette.primary.main,
                         borderRadius: 1.5,
@@ -123,61 +149,37 @@ const DashboardLayout = () => {
                       }}
                     >
                       <IconButton sx={{ width: 'max-content', color: '#fff' }}>
-                        {el.icon}
+                        <Gear></Gear>
                       </IconButton>
                     </Box>
                     :
-                    <IconButton key={el.index}
+                    <IconButton
                       sx={{
                         width: 'max-content',
                         color: theme.palette.mode === 'light' ? '#000' : theme.palette.text.primary
                       }}
-                      onClick={() => setSelected(el.index)}>
-                      {el.icon}
-                    </IconButton>
-                )
-              }
-              <Divider sx={{ width: '48px' }} />
-              {
-                selected === 3 ?
-                  <Box
-                    sx={{
-                      backgroundColor: theme.palette.primary.main,
-                      borderRadius: 1.5,
-                      padding: 1
-                    }}
-                  >
-                    <IconButton sx={{ width: 'max-content', color: '#fff' }}>
+                      onClick={() => setSelected(3)}
+                    >
                       <Gear></Gear>
                     </IconButton>
-                  </Box>
-                  :
-                  <IconButton
-                    sx={{
-                      width: 'max-content',
-                      color: theme.palette.mode === 'light' ? '#000' : theme.palette.text.primary
-                    }}
-                    onClick={() => setSelected(3)}
-                  >
-                    <Gear></Gear>
-                  </IconButton>
-              }
+                }
+              </Stack>
+            </Stack>
+            <Stack
+              direction={'column'}
+              alignItems={'center'}
+              spacing={4}
+            >
+              <MaterialUISwitch
+                onChange={onToggleMode}
+                checked={theme.palette.mode === 'light' ? false : true}
+              />
+              <Avatar src={faker.image.avatar()}></Avatar>
             </Stack>
           </Stack>
-          <Stack
-            direction={'column'}
-            alignItems={'center'}
-            spacing={4}
-          >
-            <MaterialUISwitch
-              onChange={onToggleMode}
-              checked={theme.palette.mode === 'light' ? false : true}
-            />
-            <Avatar src={faker.image.avatar()}></Avatar>
-          </Stack>
-        </Stack>
-      </Box>
-      <Outlet />
+        </Box>
+        <Outlet />
+      </Stack>
     </>
   );
 };
