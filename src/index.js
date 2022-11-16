@@ -5,6 +5,9 @@ import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from "react-helmet-async";
 import App from "./App";
 
+// 公共样式
+import './assets/styles/common.css'
+
 // contexts（样式、颜色、布局的context）
 import SettingsProvider from "./contexts/SettingsContext";
 
