@@ -35,12 +35,13 @@ function Footer() {
                     InputProps={{
                         disableUnderline: true,
                         startAdornment: (
-                            <InputAdornment>
+                            // InputAdornment的position(start|end)必须要有
+                            <InputAdornment position='end'>
                                 <IconButton ><LinkSimple /></IconButton>
                             </InputAdornment>
                         ),
                         endAdornment: (
-                            <InputAdornment>
+                            <InputAdornment position='end'>
                                 <IconButton ><Smiley /></IconButton>
                             </InputAdornment>
                         ),
