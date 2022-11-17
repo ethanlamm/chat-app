@@ -20,25 +20,25 @@ const ActionLists = [
     {
         color: "#1b8cfe",
         icon: <Sticker size={24} />,
-        y: 132,
+        y: 142,
         title: "Stickers",
     },
     {
         color: "#0172e4",
         icon: <Camera size={24} />,
-        y: 202,
+        y: 222,
         title: "Image",
     },
     {
         color: "#0159b2",
         icon: <File size={24} />,
-        y: 272,
+        y: 302,
         title: "Document",
     },
     {
         color: "#013f7f",
         icon: <User size={24} />,
-        y: 342,
+        y: 382,
         title: "Contact",
     },
 ];
@@ -74,9 +74,9 @@ const EmojiCart = () => {
 const ActionCom = () => {
     return (
         <Box sx={{
-            // fixed定位，相对于浏览器窗口
-            position: 'fixed',
-            left: 445,
+            // absolute定位，相对于Footer组件最外层
+            position: 'absolute',
+            left: 25,
             bottom: 82,
             zIndex: 999,
             width: 'max-content',
@@ -126,6 +126,7 @@ function Footer() {
 
     return (
         <Box sx={{
+            position: 'relative',
             width: '100%',
             backgroundColor: theme.palette.mode === 'light' ? '#F8FAFF' : theme.palette.background.paper,
             boxShadow: '0px 0px 2px rgba(0,0,0,0.25)',
