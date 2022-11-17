@@ -2,7 +2,7 @@ import React from "react";
 
 import { Stack, Box } from '@mui/material'
 
-import Chats from './Chats'
+import Chats from '../../components/Chats'
 import Conversation from "../../components/Conversation";
 
 const GeneralApp = () => {

@@ -8,8 +8,6 @@ import { CircleDashed, MagnifyingGlass, ArchiveBox } from 'phosphor-react'
 // constant资源
 import { ChatList } from '../../data'
 
-// import { SimpleBarStyle } from '../../components/Scrollbar'
-
 // 自定义search搜索框
 const Search = styled("div")(({ theme }) => ({
     position: "relative",
