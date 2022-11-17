@@ -6,12 +6,77 @@ import { Nav_Buttons } from '../../data';
 // Box: 类似div
 // Stack: 使子组件、子元素水平或垂直分布
 // Divider: 分隔线
-import { Box, Stack, IconButton, Divider, Avatar } from '@mui/material'
+import { Box, Stack, IconButton, Divider, Avatar, Typography, Menu, MenuItem } from '@mui/material'
 import { Gear } from 'phosphor-react'
 import { useTheme } from '@mui/material/styles'
 import { faker } from "@faker-js/faker";
 
 import MaterialUISwitch from '../../components/MaterialUISwitch';
+
+import { Profile_Menu } from '../../data'
+
+// ProfileMenu组件
+const ProfileMenu = ({ children }) => {
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+    return (
+        <Stack>
+            <Box
+                id="basic-button"
+                sx={{ cursor: 'pointer' }}
+                onClick={handleClick}
+            >
+                {children}
+            </Box>
+            <Menu
+                id="basic-menu"
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                MenuListProps={{
+                    'aria-labelledby': 'basic-button',
+                }}
+                // 以id="basic-button"的元素为参照，以该元素的哪个点为起始参照点
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'right',
+                }}
+                // MenuItem与参照元素的起始点的贴边
+                transformOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                }}
+            >
+                {Profile_Menu.map(item => {
+                    return (
+                        <MenuItem
+                            key={item.title}
+                            onClick={handleClose}
+                            sx={{ width: 'max-content', minWidth: '140px' }}
+                        >
+                            <Stack
+                                direction={'row'}
+                                justifyContent={'space-between'}
+                                alignItems={'center'}
+                                width={'100%'}
+                            >
+                                <Typography>{item.title}</Typography>
+                                <IconButton >{item.icon}</IconButton>
+                            </Stack>
+                        </MenuItem>
+                    )
+                })}
+            </Menu>
+        </Stack>
+    )
+}
+
 
 function SideBar() {
     // console.log(theme);
@@ -119,7 +184,9 @@ function SideBar() {
                     spacing={4}
                 >
                     <MaterialUISwitch />
-                    <Avatar src={faker.image.avatar()}></Avatar>
+                    <ProfileMenu>
+                        <Avatar src={faker.image.avatar()}></Avatar>
+                    </ProfileMenu>
                 </Stack>
             </Stack>
         </Box>

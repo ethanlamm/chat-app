@@ -1,15 +1,67 @@
-import React from 'react'
+import React, { useState } from 'react'
 // 图标
-import { Image, DownloadSimple } from 'phosphor-react'
-import { Stack, Divider, Box, Typography, Link, IconButton } from '@mui/material'
+import { Image, DownloadSimple, DotsThreeVertical } from 'phosphor-react'
+import { Stack, Divider, Box, Typography, Link, IconButton, Menu, MenuItem } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
+
+import { Message_options } from '../../data'
+
+
+// MessageOptions组件
+const MessageOptions = ({ msg }) => {
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+    return (
+        <Stack>
+            <Box
+                id="basic-button"
+                sx={{ cursor: 'pointer' }}
+                onClick={handleClick}
+            >
+                <DotsThreeVertical size={20} />
+            </Box>
+            <Menu
+                id="basic-menu"
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                MenuListProps={{
+                    'aria-labelledby': 'basic-button',
+                }}
+                // 以id="basic-button"的元素为参照，以该元素的哪个点为起始参照点
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                }}
+                // MenuItem与参照元素的起始点的贴边
+                transformOrigin={{
+                    vertical: 'top',
+                    horizontal: msg.incoming ? 'left' : 'right',
+                }}
+            >
+                {Message_options.map(item => {
+                    return (
+                        <MenuItem key={item.title} onClick={handleClose}>{item.title}</MenuItem>
+                    )
+                })}
+            </Menu>
+        </Stack>
+    )
+}
 
 // 公共部分
 const CommonCom = ({ msg, children }) => {
     const theme = useTheme()
     return (
         <Stack
-            direction={'row'}
+            direction={msg.incoming ? 'row' : 'row-reverse'}
+            spacing={0.8}
             justifyContent={msg.incoming ? 'start' : 'end'}
         >
             <Box sx={{
@@ -23,6 +75,8 @@ const CommonCom = ({ msg, children }) => {
             >
                 {children}
             </Box>
+            {/* MessageOptions */}
+            <MessageOptions msg={msg} />
         </Stack>
     )
 }
