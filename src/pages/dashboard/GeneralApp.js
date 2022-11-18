@@ -4,6 +4,7 @@ import { Stack, Box } from '@mui/material'
 
 import Chats from '../../components/Chats'
 import Conversation from "../../components/Conversation";
+import Contacts from "../../components/Contacts";
 
 const GeneralApp = () => {
 
@@ -12,10 +13,11 @@ const GeneralApp = () => {
       <Chats></Chats>
       <Box sx={{
         height: '100%',
-        width: 'calc(100% - 320px)'
+        width: '100%'
       }}>
         <Conversation></Conversation>
       </Box>
+      <Contacts></Contacts>
     </Stack>
   );
 };
