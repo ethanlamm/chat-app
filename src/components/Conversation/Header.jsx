@@ -6,6 +6,8 @@ import { Stack, Box, Avatar, Typography, IconButton, Divider, Badge } from '@mui
 import { styled, useTheme } from '@mui/material/styles'
 import { faker } from '@faker-js/faker';
 
+import { useSideBar } from '../../store/exports'
+
 // 自定义头像 （圆点）
 const StyledBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
@@ -40,12 +42,15 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 function Header() {
     const theme = useTheme()
 
+    const { useToggleSideBar } = useSideBar()
+
     return (
         <Box sx={{
             width: '100%',
             backgroundColor: theme.palette.mode === 'light' ? '#F8FAFF' : theme.palette.background.paper,
             boxShadow: '0px 0px 2px rgba(0,0,0,0.25)',
-            padding: 2
+            padding: 2,
+            zIndex: 0
         }}>
             <Stack
                 direction={'row'}
@@ -59,7 +64,7 @@ function Header() {
                     alignItems={'center'}
                     spacing={2}
                 >
-                    <Box>
+                    <Box sx={{ cursor: 'pointer' }} onClick={useToggleSideBar}>
                         <StyledBadge
                             overlap="circular"
                             anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}

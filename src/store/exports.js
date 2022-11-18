@@ -3,10 +3,10 @@ import { useSelector, useDispatch } from 'react-redux'
 // action创建器
 import { toggleSideBar, updateSideBar } from './slices/app'
 
+// useDispatch 只能在函数中使用
 
-const dispatch = useDispatch()
-
-export const useSiderBar = () => {
+export const useSideBar = () => {
+    const dispatch = useDispatch()
     const { sidebar } = useSelector(state => state.app)
 
     const useToggleSideBar = () => {
