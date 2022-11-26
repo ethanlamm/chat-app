@@ -9,11 +9,13 @@ import { useTheme } from '@mui/material/styles'
 // 静态资源
 import { Shared_Links, shared_Docs } from '../../data'
 import { LinkMsg, DocMsg } from '../Conversation/MessageTypes'
-import { useSideBar } from '../../store/exports'
+
+import { useDispatch } from 'react-redux'
+import { updateSideBar } from '../../store/slices/app'
 
 function Shared() {
     const theme = useTheme()
-    const { useUpdateSideBar } = useSideBar()
+    const dispatch = useDispatch()
     const [value, setValue] = useState(0);
 
     const handleChange = (event, newValue) => {
@@ -34,7 +36,7 @@ function Shared() {
                     alignItems={'center'}
                     sx={{ width: '100%', height: '100%', padding: 2 }}
                 >
-                    <IconButton onClick={useUpdateSideBar({ type: 'CONTACT' })}><CaretLeft /></IconButton>
+                    <IconButton onClick={() => dispatch(updateSideBar({ type: 'CONTACT' }))}><CaretLeft /></IconButton>
                     <Typography variant='subtitle2'>Shared Messages</Typography>
                 </Stack>
             </Box>

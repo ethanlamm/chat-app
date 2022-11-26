@@ -8,11 +8,10 @@ import Contact from "../../components/Contact";
 import Shared from '../../components/Shared'
 import Starred from '../../components/Starred'
 
-
-import { useSideBar } from '../../store/exports'
+import { useSelector } from 'react-redux'
 
 const GeneralApp = () => {
-  const { sidebar } = useSideBar()
+  const { sidebar } = useSelector(state => state.app)
 
   return (
     <Stack direction={'row'} sx={{ width: '100%' }} >

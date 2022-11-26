@@ -5,14 +5,15 @@ import { CaretLeft } from 'phosphor-react'
 import { Box, Stack, Typography, IconButton, } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 
+import { useDispatch } from 'react-redux'
+import { updateSideBar } from '../../store/slices/app'
 
 import Message from '../Conversation/Message'
 
-import { useSideBar } from '../../store/exports'
 
 function Starred() {
     const theme = useTheme()
-    const { useUpdateSideBar } = useSideBar()
+    const dispatch = useDispatch()
 
     return (
         <Stack sx={{ width: 320, height: '100vh' }}>
@@ -29,7 +30,7 @@ function Starred() {
                     alignItems={'center'}
                     sx={{ width: '100%', height: '100%', padding: 2 }}
                 >
-                    <IconButton onClick={useUpdateSideBar({ type: 'CONTACT' })}><CaretLeft /></IconButton>
+                    <IconButton onClick={() => dispatch(updateSideBar({ type: 'CONTACT' }))}><CaretLeft /></IconButton>
                     <Typography variant='subtitle2'>Starred Messages</Typography>
                 </Stack>
             </Box>

@@ -6,7 +6,9 @@ import { Stack, Box, Avatar, Typography, IconButton, Divider, Badge } from '@mui
 import { styled, useTheme } from '@mui/material/styles'
 import { faker } from '@faker-js/faker';
 
-import { useSideBar } from '../../store/exports'
+
+import { useDispatch } from 'react-redux'
+import { toggleSideBar, updateSideBar } from '../../store/slices/app'
 
 // 自定义头像 （圆点）
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -39,10 +41,14 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 
+
 function Header() {
     const theme = useTheme()
-
-    const { useToggleSideBar } = useSideBar()
+    const dispatch = useDispatch()
+    const openContact = () => {
+        dispatch(updateSideBar({ type: 'CONTACT' }))
+        dispatch(toggleSideBar())
+    }
 
     return (
         <Box sx={{
@@ -64,7 +70,7 @@ function Header() {
                     alignItems={'center'}
                     spacing={2}
                 >
-                    <Box sx={{ cursor: 'pointer' }} onClick={useToggleSideBar}>
+                    <Box sx={{ cursor: 'pointer' }} onClick={openContact}>
                         <StyledBadge
                             overlap="circular"
                             anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}

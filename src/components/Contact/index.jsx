@@ -9,12 +9,14 @@ import AntSwitch from '../AntSwitch'
 // Dialogs
 import { BlockDialog, DeleteDialog } from './Dialogs'
 
-import { useSideBar } from '../../store/exports'
 import { faker } from '@faker-js/faker'
+
+import { useDispatch } from 'react-redux'
+import { toggleSideBar, updateSideBar } from '../../store/slices/app'
 
 function Contact() {
     const theme = useTheme()
-    const { useToggleSideBar, useUpdateSideBar } = useSideBar()
+    const dispatch = useDispatch()
 
     const [blockDialog, setBlockDialog] = useState(false)
     const [deleteDialog, setDeleteDialog] = useState(false)
@@ -43,7 +45,7 @@ function Contact() {
                     sx={{ width: '100%', height: '100%', padding: 2 }}
                 >
                     <Typography variant='subtitle2'>Contact Info</Typography>
-                    <IconButton onClick={useToggleSideBar}><X /></IconButton>
+                    <IconButton onClick={() => dispatch(toggleSideBar())}><X /></IconButton>
                 </Stack>
             </Box>
             {/* Body */}
@@ -93,7 +95,7 @@ function Contact() {
                     >
                         <Typography variant="subtitle1">Media, Links $ Docs</Typography>
                         <Button endIcon={<CaretRight />}
-                            onClick={useUpdateSideBar({ type: 'SHARED' })}
+                            onClick={() => dispatch(updateSideBar({ type: 'SHARED' }))}
                         >401</Button>
                     </Stack>
                     <ImageList sx={{ width: '100%', height: '100%' }} cols={3} rowHeight={'100%'}>
@@ -123,7 +125,7 @@ function Contact() {
                             ? '#000'
                             : theme.palette.text.primary
                     }}
-                        onClick={useUpdateSideBar({ type: 'STARRED' })}
+                        onClick={() => dispatch(updateSideBar({ type: 'STARRED' }))}
                     ><CaretRight /></IconButton>
                 </Stack>
                 <Divider />
