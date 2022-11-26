@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 // 图标
 import { X, Phone, VideoCamera, CaretRight, Star, Bell, Prohibit, Trash } from 'phosphor-react'
 import { Box, Stack, Typography, IconButton, Avatar, Divider, Button, ImageList, ImageListItem } from '@mui/material'
@@ -6,6 +6,8 @@ import { useTheme } from '@mui/material/styles'
 
 // 开关
 import AntSwitch from '../AntSwitch'
+// Dialogs
+import { BlockDialog, DeleteDialog } from './Dialogs'
 
 import { useSideBar } from '../../store/exports'
 import { faker } from '@faker-js/faker'
@@ -13,6 +15,16 @@ import { faker } from '@faker-js/faker'
 function Contact() {
     const theme = useTheme()
     const { useToggleSideBar, useUpdateSideBar } = useSideBar()
+
+    const [blockDialog, setBlockDialog] = useState(false)
+    const [deleteDialog, setDeleteDialog] = useState(false)
+
+    const closeBlockDialog = () => {
+        setBlockDialog(false)
+    }
+    const closeDeleteDialog = () => {
+        setDeleteDialog(false)
+    }
 
     return (
         <Stack sx={{ width: 320, height: '100vh' }}>
@@ -43,7 +55,7 @@ function Contact() {
             }}
                 spacing={3}
             >
-                {/* 头像信息 */}
+                {/* UserInfo */}
                 <Stack direction={'row'} alignItems={'center'} spacing={2} >
                     <Avatar
                         sx={{ height: 64, width: 64 }}
@@ -54,7 +66,7 @@ function Contact() {
                         <Typography variant='body2' fontWeight={500}>{'+91 723 3792 2901'}</Typography>
                     </Stack>
                 </Stack>
-                {/* 图标 */}
+                {/* Phone and Video */}
                 <Stack direction={'row'} justifyContent={'space-evenly'} alignItems={'center'}>
                     <Stack alignItems={'center'} spacing={1}>
                         <IconButton ><Phone /></IconButton>
@@ -66,13 +78,13 @@ function Contact() {
                     </Stack>
                 </Stack>
                 <Divider />
-                {/* 简介 */}
+                {/* Essays */}
                 <Stack spacing={0.5}>
                     <Typography variant='article'>Essays</Typography>
                     <Typography variant='body2'>Nothing starts with N and ends with G</Typography>
                 </Stack>
                 <Divider />
-                {/* 图片 */}
+                {/* Shared Message */}
                 <Stack spacing={1}>
                     <Stack
                         direction={'row'}
@@ -139,11 +151,15 @@ function Contact() {
                         <Typography variant='body2' fontWeight={500}>{'Owl,Parrot,Rabbit,You'}</Typography>
                     </Stack>
                 </Stack>
+                {/* Buttons */}
                 <Stack direction={'row'} alignItems={'center'} spacing={2}>
-                    <Button startIcon={<Prohibit />} variant='outlined' fullWidth>Block</Button>
-                    <Button startIcon={<Trash />} variant='outlined' fullWidth>Delete</Button>
+                    <Button startIcon={<Prohibit />} variant='outlined' fullWidth onClick={() => setBlockDialog(true)}>Block</Button>
+                    <Button startIcon={<Trash />} variant='outlined' fullWidth onClick={() => setDeleteDialog(true)}>Delete</Button>
                 </Stack>
             </Stack>
+            {/* Dialogs */}
+            {blockDialog && <BlockDialog open={blockDialog} handleClose={closeBlockDialog} />}
+            {deleteDialog && <DeleteDialog open={deleteDialog} handleClose={closeDeleteDialog} />}
         </Stack>
     )
 }
