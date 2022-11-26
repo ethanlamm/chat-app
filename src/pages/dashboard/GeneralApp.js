@@ -4,7 +4,7 @@ import { Stack, Box } from '@mui/material'
 
 import Chats from '../../components/Chats'
 import Conversation from "../../components/Conversation";
-import Contacts from "../../components/Contacts";
+import Contact from "../../components/Contact";
 
 import { useSideBar } from '../../store/exports'
 
@@ -20,7 +20,7 @@ const GeneralApp = () => {
       }}>
         <Conversation></Conversation>
       </Box>
-      {sidebar.open && <Contacts />}
+      {sidebar.open && <Contact />}
     </Stack>
   );
 };
