@@ -12,7 +12,7 @@ import { faker } from '@faker-js/faker'
 
 function Contact() {
     const theme = useTheme()
-    const { useToggleSideBar } = useSideBar()
+    const { useToggleSideBar, useUpdateSideBar } = useSideBar()
 
     return (
         <Stack sx={{ width: 320, height: '100vh' }}>
@@ -80,7 +80,9 @@ function Contact() {
                         alignItems={'center'}
                     >
                         <Typography variant="subtitle1">Media, Links $ Docs</Typography>
-                        <Button endIcon={<CaretRight />}>401</Button>
+                        <Button endIcon={<CaretRight />}
+                            onClick={useUpdateSideBar({ type: 'SHARED' })}
+                        >401</Button>
                     </Stack>
                     <ImageList sx={{ width: '100%', height: '100%' }} cols={3} rowHeight={'100%'}>
                         {[1, 2, 3].map((item, index) => (
@@ -108,7 +110,9 @@ function Contact() {
                         color: theme.palette.mode === 'light'
                             ? '#000'
                             : theme.palette.text.primary
-                    }}><CaretRight /></IconButton>
+                    }}
+                        onClick={useUpdateSideBar({ type: 'STARRED' })}
+                    ><CaretRight /></IconButton>
                 </Stack>
                 <Divider />
                 {/* Mute Notifications */}

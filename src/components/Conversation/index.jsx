@@ -20,7 +20,7 @@ function Conversation() {
                 backgroundColor: theme.palette.mode === 'light' ? '#F8FAFF' : theme.palette.background.paper,
                 overflowY: 'scroll'
             }}>
-                <Message />
+                <Message menu />
             </Box>
             {/* Footer */}
             <Footer />

@@ -56,7 +56,7 @@ const MessageOptions = ({ msg }) => {
 }
 
 // 公共部分
-const CommonCom = ({ msg, children }) => {
+const CommonCom = ({ msg, children, menu }) => {
     const theme = useTheme()
     return (
         <Stack
@@ -76,7 +76,7 @@ const CommonCom = ({ msg, children }) => {
                 {children}
             </Box>
             {/* MessageOptions */}
-            <MessageOptions msg={msg} />
+            {menu && <MessageOptions msg={msg} />}
         </Stack>
     )
 }
@@ -103,10 +103,10 @@ export const TimeLine = ({ msg }) => {
 }
 
 // 文字消息
-export const TextMsg = ({ msg }) => {
+export const TextMsg = ({ msg, menu }) => {
     const theme = useTheme()
     return (
-        <CommonCom msg={msg}>
+        <CommonCom msg={msg} menu={menu}>
             <Typography variant="body2"
                 color={msg.incoming ? theme.palette.text : '#fff'}
             >
@@ -118,10 +118,10 @@ export const TextMsg = ({ msg }) => {
 }
 
 // 图片消息
-export const ImgMsg = ({ msg }) => {
+export const ImgMsg = ({ msg, menu }) => {
     const theme = useTheme()
     return (
-        <CommonCom msg={msg}>
+        <CommonCom msg={msg} menu={menu}>
             <Stack spacing={2}>
                 <img src={msg.img} alt={msg.message}
                     style={{ maxHeight: 210, borderRadius: '10px' }} />
@@ -136,10 +136,10 @@ export const ImgMsg = ({ msg }) => {
 }
 
 // 回复消息
-export const ReplyMsg = ({ msg }) => {
+export const ReplyMsg = ({ msg, menu }) => {
     const theme = useTheme()
     return (
-        <CommonCom msg={msg}>
+        <CommonCom msg={msg} menu={menu}>
             <Stack spacing={2}>
                 {/* 被回复的消息 */}
                 <Stack
@@ -170,10 +170,10 @@ export const ReplyMsg = ({ msg }) => {
 }
 
 // 链接消息
-export const LinkMsg = ({ msg }) => {
+export const LinkMsg = ({ msg, menu }) => {
     const theme = useTheme()
     return (
-        <CommonCom msg={msg}>
+        <CommonCom msg={msg} menu={menu}>
             <Stack spacing={2}>
                 <Stack
                     direction={'column'}
@@ -209,10 +209,10 @@ export const LinkMsg = ({ msg }) => {
 }
 
 // 文件消息
-export const DocMsg = ({ msg }) => {
+export const DocMsg = ({ msg, menu }) => {
     const theme = useTheme()
     return (
-        <CommonCom msg={msg}>
+        <CommonCom msg={msg} menu={menu}>
             <Stack spacing={2}>
                 <Stack
                     direction={'row'}

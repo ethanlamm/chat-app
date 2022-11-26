@@ -5,6 +5,9 @@ import { Stack, Box } from '@mui/material'
 import Chats from '../../components/Chats'
 import Conversation from "../../components/Conversation";
 import Contact from "../../components/Contact";
+import Shared from '../../components/Shared'
+import Starred from '../../components/Starred'
+
 
 import { useSideBar } from '../../store/exports'
 
@@ -20,7 +23,18 @@ const GeneralApp = () => {
       }}>
         <Conversation></Conversation>
       </Box>
-      {sidebar.open && <Contact />}
+      {sidebar.open && (() => {
+        switch (sidebar.type) {
+          case 'CONTACT':
+            return <Contact />
+          case 'SHARED':
+            return <Shared />
+          case 'STARRED':
+            return <Starred />
+          default:
+            return <></>
+        }
+      })()}
     </Stack>
   );
 };

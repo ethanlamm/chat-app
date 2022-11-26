@@ -6,7 +6,7 @@ import { Chat_History } from '../../data'
 // 消息组件
 import { TimeLine, TextMsg, ImgMsg, ReplyMsg, LinkMsg, DocMsg } from './MessageTypes'
 
-function Message() {
+function Message({ menu }) {
     return (
         <Box sx={{ padding: 3 }}>
             <Stack spacing={3} >
@@ -17,15 +17,15 @@ function Message() {
                         case 'msg':
                             switch (message.subtype) {
                                 case 'img':
-                                    return <ImgMsg msg={message} key={index} />
+                                    return <ImgMsg msg={message} key={index} menu={menu} />
                                 case 'doc':
-                                    return <DocMsg msg={message} key={index} />
+                                    return <DocMsg msg={message} key={index} menu={menu} />
                                 case 'link':
-                                    return <LinkMsg msg={message} key={index} />
+                                    return <LinkMsg msg={message} key={index} menu={menu} />
                                 case 'reply':
-                                    return <ReplyMsg msg={message} key={index} />
+                                    return <ReplyMsg msg={message} key={index} menu={menu} />
                                 default:
-                                    return <TextMsg msg={message} key={index} />
+                                    return <TextMsg msg={message} key={index} menu={menu} />
                             }
                         default:
                             return <></>

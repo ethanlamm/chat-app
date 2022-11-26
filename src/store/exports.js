@@ -10,12 +10,13 @@ export const useSideBar = () => {
     const { sidebar } = useSelector(state => state.app)
 
     const useToggleSideBar = () => {
+        dispatch(updateSideBar({ type: 'CONTACT' }))
         dispatch(toggleSideBar())
     }
 
     // 注意参数
     const useUpdateSideBar = (payload) => {
-        dispatch(updateSideBar(payload))
+        return () => dispatch(updateSideBar(payload))
     }
 
     return { sidebar, useToggleSideBar, useUpdateSideBar }
