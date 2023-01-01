@@ -1,0 +1,124 @@
+import React from 'react'
+import { Dialog, DialogTitle, DialogContent, Slide, Grid, Stack, Typography, Chip, Button, DialogActions } from '@mui/material'
+
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+});
+
+const list = [
+    {
+        key: 0,
+        title: "Mark as unread",
+        combination: ["Cmd", "Shift", "U"],
+    },
+    {
+        key: 1,
+        title: "Mute",
+        combination: ["Cmd", "Shift", "M"],
+    },
+    {
+        key: 2,
+        title: "Archive Chat",
+        combination: ["Cmd", "Shift", "E"],
+    },
+    {
+        key: 3,
+        title: "Delete Chat",
+        combination: ["Cmd", "Shift", "D"],
+    },
+    {
+        key: 4,
+        title: "Pin Chat",
+        combination: ["Cmd", "Shift", "P"],
+    },
+    {
+        key: 5,
+        title: "Search",
+        combination: ["Cmd", "F"],
+    },
+    {
+        key: 6,
+        title: "Search Chat",
+        combination: ["Cmd", "Shift", "F"],
+    },
+    {
+        key: 7,
+        title: "Next Chat",
+        combination: ["Cmd", "N"],
+    },
+    {
+        key: 8,
+        title: "Next Step",
+        combination: ["Ctrl", "Tab"],
+    },
+    {
+        key: 9,
+        title: "Previous Step",
+        combination: ["Ctrl", "Shift", "Tab"],
+    },
+    {
+        key: 10,
+        title: "New Group",
+        combination: ["Cmd", "Shift", "N"],
+    },
+    {
+        key: 11,
+        title: "Profile & About",
+        combination: ["Cmd", "P"],
+    },
+    {
+        key: 12,
+        title: "Increase speed of voice message",
+        combination: ["Shift", "."],
+    },
+    {
+        key: 13,
+        title: "Decrease speed of voice message",
+        combination: ["Shift", ","],
+    },
+    {
+        key: 14,
+        title: "Settings",
+        combination: ["Shift", "S"],
+    },
+    {
+        key: 15,
+        title: "Emoji Panel",
+        combination: ["Cmd", "E"],
+    },
+    {
+        key: 16,
+        title: "Sticker Panel",
+        combination: ["Cmd", "S"],
+    }
+]
+
+function Shortcuts({ open, handleClose }) {
+    return (
+        <Dialog fullWidth maxWidth='md' keepMounted sx={{ padding: 4 }} TransitionComponent={Transition} open={open} onClose={handleClose} >
+            <DialogTitle>Keyboard Shortcuts</DialogTitle>
+            <DialogContent sx={{ marginTop: 4 }}>
+                <Grid container spacing={3}>
+                    {list.map(item => (
+                        <Grid item xs={6} key={item.key} container >
+                            <Stack sx={{ width: '100%' }} direction={'row'} justifyContent={'space-between'} alignItems={'center'} spacing={3}>
+                                <Typography variant='caption' sx={{ fontSize: 14 }}>{item.title}</Typography>
+                                <Stack spacing={2} direction={'row'}>
+                                    {item.combination.map(i => (
+                                        <Chip label={i} key={i} sx={{ padding: '10px' }} />
+                                    ))}
+                                </Stack>
+                            </Stack>
+                        </Grid>
+                    ))}
+                </Grid>
+            </DialogContent>
+            <DialogActions>
+                <Button variant='contained' onClick={handleClose}>Ok</Button>
+            </DialogActions>
+        </Dialog>
+    )
+}
+
+export default Shortcuts
