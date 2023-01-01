@@ -19,10 +19,10 @@ const Loadable = (Component) => (props) => {
 };
 
 const GeneralApp = Loadable(
-  lazy(() => import("../pages/Dashboard/GeneralApp")),
+  lazy(() => import("../pages/dashboard/GeneralApp")),
 );
 const Settings = Loadable(
-  lazy(() => import("../pages/Dashboard/Settings")),
+  lazy(() => import("../pages/dashboard/Settings")),
 );
 const Page404 = Loadable(lazy(() => import("../components/Page404")));
 
