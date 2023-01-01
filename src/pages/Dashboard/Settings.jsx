@@ -4,8 +4,8 @@ import { Stack, Box, IconButton, Typography, Avatar, Divider } from '@mui/materi
 import { useTheme } from '@mui/material/styles'
 import { faker } from '@faker-js/faker';
 
-import Shortcuts from '../components/SettingsDialogs/Shortcuts';
-import Theme from '../components/SettingsDialogs/Theme';
+import Shortcuts from '../../components/SettingsDialogs/Shortcuts';
+import Theme from '../../components/SettingsDialogs/Theme';
 
 function Settings() {
     const theme = useTheme()
