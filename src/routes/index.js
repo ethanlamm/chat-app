@@ -2,7 +2,7 @@ import { Suspense, lazy } from "react";
 import { Navigate, useRoutes } from "react-router-dom";
 
 // layouts
-import DashboardLayout from "../layouts/dashboard";
+import DashboardLayout from "../layouts";
 
 // config DEFAULT_PATH='/app'
 import { DEFAULT_PATH } from "../config";
@@ -19,12 +19,12 @@ const Loadable = (Component) => (props) => {
 };
 
 const GeneralApp = Loadable(
-  lazy(() => import("../pages/dashboard/GeneralApp")),
+  lazy(() => import("../pages/GeneralApp")),
 );
 const Settings = Loadable(
-  lazy(() => import("../layouts/dashboard/Settings")),
+  lazy(() => import("../pages/Settings")),
 );
-const Page404 = Loadable(lazy(() => import("../pages/Page404")));
+const Page404 = Loadable(lazy(() => import("../components/Page404")));
 
 export default function Router() {
   return useRoutes([

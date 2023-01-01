@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
-import Logo from '../../assets/Images/logo.ico'
-import { Nav_Buttons } from '../../data';
+import Logo from '../assets/Images/logo.ico'
+import { Nav_Buttons } from '../data';
 
 // Box: 类似div
 // Stack: 使子组件、子元素水平或垂直分布
@@ -11,9 +11,9 @@ import { Gear } from 'phosphor-react'
 import { useTheme } from '@mui/material/styles'
 import { faker } from "@faker-js/faker";
 
-import MaterialUISwitch from '../../components/MaterialUISwitch';
+import MaterialUISwitch from './MaterialUISwitch';
 
-import { Profile_Menu } from '../../data'
+import { Profile_Menu } from '../data'
 
 // ProfileMenu组件
 const ProfileMenu = ({ children }) => {
